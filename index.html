@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Quiz de Matemáticas</title>
+<style>
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding:30px;
+}
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+button{
+display:block;
+width:100%;
+margin:10px 0;
+padding:10px;
+font-size:16px;
+cursor:pointer;
+}
+#resultado{
+font-weight:bold;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Quiz de Matemáticas</h2>
+
+<h3 id="pregunta"></h3>
+
+<div id="respuestas"></div>
+
+<p id="resultado"></p>
+
+<button onclick="nuevaPregunta()">Otra pregunta</button>
+
+</div>
+
+<script>
+
+const preguntas=[
+
+{
+pregunta:"¿Cuánto es 8 × 7?",
+respuestas:["54","56","63","49"],
+correcta:1
+},
+
+{
+pregunta:"¿Cuánto es 25 + 17?",
+respuestas:["40","42","41","43"],
+correcta:1
+},
+
+{
+pregunta:"¿Cuánto es 12²?",
+respuestas:["124","144","132","122"],
+correcta:1
+},
+
+{
+pregunta:"¿Cuál es la mitad de 80?",
+respuestas:["20","30","40","50"],
+correcta:2
+},
+
+{
+pregunta:"¿Cuánto es 9 × 9?",
+respuestas:["81","72","99","89"],
+correcta:0
+}
+
+];
+
+function nuevaPregunta(){
+
+let p=preguntas[Math.floor(Math.random()*preguntas.length)];
+
+document.getElementById("pregunta").innerHTML=p.pregunta;
+
+let html="";
+
+p.respuestas.forEach((r,i)=>{
+
+html+=`<button onclick="verificar(${i},${p.correcta})">${r}</button>`;
+
+});
+
+document.getElementById("respuestas").innerHTML=html;
+
+document.getElementById("resultado").innerHTML="";
+
+}
+
+function verificar(opcion,correcta){
+
+if(opcion==correcta){
+
+document.getElementById("resultado").innerHTML="✅ ¡Correcto!";
+
+}else{
+
+document.getElementById("resultado").innerHTML="❌ Incorrecto";
+
+}
+
+}
+
+nuevaPregunta();
+
+</script>
+
+</body>
+</html>
